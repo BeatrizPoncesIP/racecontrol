@@ -2,7 +2,16 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="txtNomeApp">#FFFFFFFF</color>
+
     <color name="backgroundBotao">#FF000000</color>
     <color name="textoBotao">#FFFFFFFF</color>
-    <color name="txtNomeApp">#FFFFFFFF</color>
+
+    <color name="backgroundAppbar">#FF000000</color>
+    <color name="txtAppbar">#FFFFFFFF</color>
+
+    <color name="iconAdd">#FFFFFFFF</color>
+
+    <color name="linhaLista">#DCDCDC</color>
+    <color name="txtLista">#FF000000</color>
 </resources>

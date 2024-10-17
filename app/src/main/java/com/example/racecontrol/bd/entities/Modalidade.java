@@ -5,15 +5,15 @@ import androidx.room.PrimaryKey;
 
 @Entity
 public class Modalidade {
-
     @PrimaryKey(autoGenerate = true)
-    private int idMod;
+    private int id;
     private String descricao;
 
+    // Getters e Setters
     public Modalidade(){}
 
-    public int getIdMod() {
-        return idMod;
+    public int getId() {
+        return id;
     }
 
     public String getDescricao() {
@@ -23,4 +23,9 @@ public class Modalidade {
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 }
+
