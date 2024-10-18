@@ -1,19 +1,25 @@
 package com.example.racecontrol.bd.entities;
 
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 @Entity
 public class Modalidade {
     @PrimaryKey(autoGenerate = true)
-    private int id;
+    private int idMod;
     private String descricao;
+
+    public Modalidade(int idMod, String descricao) {
+        this.idMod = idMod;
+        this.descricao = descricao;
+    }
 
     // Getters e Setters
     public Modalidade(){}
 
-    public int getId() {
-        return id;
+    public int getIdMod() {
+        return idMod;
     }
 
     public String getDescricao() {
@@ -24,8 +30,12 @@ public class Modalidade {
         this.descricao = descricao;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdMod(int idMod) {
+        this.idMod = idMod;
     }
+
+    @NonNull
+    @Override
+    public String toString() {return this.getIdMod() + " " + this.getDescricao();}
 }
 

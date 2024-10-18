@@ -9,7 +9,7 @@ import android.view.View;
 import com.example.racecontrol.bd.database.AppDatabase;
 import com.example.racecontrol.bd.entities.Participante;
 import androidx.recyclerview.widget.DividerItemDecoration;
-import com.example.racecontrol.decoracao.CustomDividerItemDecoration;
+
 import java.util.List;
 
 public class ParticipantesActivity extends AppCompatActivity {
@@ -43,7 +43,7 @@ public class ParticipantesActivity extends AppCompatActivity {
     // Função para carregar os participantes do banco de dados e exibir na lista
     private void carregarParticipantes() {
         new Thread(() -> {
-            participanteList = db.participanteDao().getAll(); // Busca todos os participantes
+            participanteList = db.participanteDao().getAllPart(); // Busca todos os participantes
             runOnUiThread(() -> {
                 if (participanteAdapter == null) {
                     participanteAdapter = new ParticipanteAdapter(participanteList, db.modalidadeDao(), new ParticipanteAdapter.OnItemClickListener() {
@@ -61,7 +61,7 @@ public class ParticipantesActivity extends AppCompatActivity {
                             // Deleta o participante
                             Participante participanteToDelete = participanteList.get(position);
                             new Thread(() -> {
-                                db.participanteDao().delete(participanteToDelete);
+                                db.participanteDao().deletePart(participanteToDelete);
                                 carregarParticipantes();
                             }).start();
                         }

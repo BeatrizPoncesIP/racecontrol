@@ -14,6 +14,15 @@ public class Participante {
     private String telefone;
     private int idMod;  // Chave estrangeira que faz referência a Modalidade
 
+    public Participante(int id, String nome, String email, String cpf, String telefone, int idMod) {
+        this.id = id;
+        this.nome = nome;
+        this.email = email;
+        this.cpf = cpf;
+        this.telefone = telefone;
+        this.idMod = idMod;
+    }
+
     // Getters e Setters
     public Participante(){}
     public int getId() {return id;}

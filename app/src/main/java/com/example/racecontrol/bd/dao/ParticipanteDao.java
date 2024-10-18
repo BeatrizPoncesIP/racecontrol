@@ -12,17 +12,17 @@ import java.util.List;
 public interface ParticipanteDao {
 
     @Query("SELECT * FROM Participante")
-    List<Participante> getAll();
+    List<Participante> getAllPart();
 
     @Query("SELECT * FROM Participante WHERE id = :id")
-    Participante getById(int id);
+    Participante getPartById(int id);
 
     @Insert
-    void insert(Participante participante);
+    void insertPart(Participante participante);
 
     @Update
-    void update(Participante participante);
+    void updatePart(Participante participante);
 
     @Delete
-    void delete(Participante participante);
+    void deletePart(Participante participante);
 }
