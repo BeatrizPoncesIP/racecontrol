@@ -43,5 +43,6 @@
         app:backgroundTint="@color/backgroundBotao"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        android:onClick="addParticipante"
         app:tint="@color/iconAdd" />
 </androidx.constraintlayout.widget.ConstraintLayout>

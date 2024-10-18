@@ -5,6 +5,7 @@
     <color name="txtNomeApp">#FFFFFFFF</color>
 
     <color name="backgroundBotao">#FF000000</color>
+    <color name="backgroundBotaSim">#0F9218</color>
     <color name="textoBotao">#FFFFFFFF</color>
 
     <color name="backgroundAppbar">#FF000000</color>

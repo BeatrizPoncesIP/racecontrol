@@ -12,3 +12,4 @@ public class ModalidadesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_modalidades);
     }
 }
+

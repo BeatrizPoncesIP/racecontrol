@@ -49,11 +49,16 @@ public class ParticipantesActivity extends AppCompatActivity {
                     participanteAdapter = new ParticipanteAdapter(participanteList, db.modalidadeDao(), new ParticipanteAdapter.OnItemClickListener() {
                         @Override
                         public void onEditClick(int position) {
-                            // Ação de edição
+                            // Redireciona para AddEditParticipanteActivity para editar
+                            Participante participanteToEdit = participanteList.get(position);
+                            Intent intent = new Intent(ParticipantesActivity.this, AddEditParticipanteActivity.class);
+                            intent.putExtra("id", participanteToEdit.getId()); // Passa o ID do participante para editar
+                            startActivity(intent);
                         }
 
                         @Override
                         public void onDeleteClick(int position) {
+                            // Deleta o participante
                             Participante participanteToDelete = participanteList.get(position);
                             new Thread(() -> {
                                 db.participanteDao().delete(participanteToDelete);
@@ -69,9 +74,9 @@ public class ParticipantesActivity extends AppCompatActivity {
         }).start();
     }
 
-    // Redireciona para a tela de adicionar participante
+    // Redireciona para a tela de adicionar participante (tudo vazio)
     public void addParticipante(View view) {
-        // Intent intent = new Intent(this, AddEditParticipanteActivity.class);
-        // startActivity(intent);
+        Intent intent = new Intent(this, AddEditParticipanteActivity.class);
+        startActivity(intent);
     }
 }
