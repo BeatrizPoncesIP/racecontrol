@@ -7,13 +7,13 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.racecontrol.R;
 import com.example.racecontrol.bd.dao.ParticipanteDao;
 import com.example.racecontrol.bd.dao.ModalidadeDao;
 import com.example.racecontrol.bd.database.AppDatabase;
 import com.example.racecontrol.bd.entities.Modalidade;
 import com.example.racecontrol.bd.entities.Participante;
+import com.example.racecontrol.utils.CPFUtils;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -22,7 +22,6 @@ public class AddEditParticipanteActivity extends AppCompatActivity {
 
     private EditText editTextNome, editTextEmail, editTextCPF, editTextTelefone;
     private Spinner spinnerModalidade;
-    private Button buttonSalvar, buttonCancelar;
     private ParticipanteDao participanteDao;
     private ModalidadeDao modalidadeDao;
     private ExecutorService executorService;
@@ -40,8 +39,8 @@ public class AddEditParticipanteActivity extends AppCompatActivity {
         editTextCPF = findViewById(R.id.editCPF);
         editTextTelefone = findViewById(R.id.editTelefone);
         spinnerModalidade = findViewById(R.id.spinnerModalidade);
-        buttonSalvar = findViewById(R.id.btnSalvarParticipante);
-        buttonCancelar = findViewById(R.id.btnCancelarParticipante);
+        Button buttonSalvar = findViewById(R.id.btnSalvarParticipante);
+        Button buttonCancelar = findViewById(R.id.btnCancelarParticipante);
 
         // Inicializando o DAO e o executor
         participanteDao = AppDatabase.getDatabase(this).participanteDao();
@@ -79,7 +78,7 @@ public class AddEditParticipanteActivity extends AppCompatActivity {
                 if (participante != null) {
                     editTextNome.setText(participante.getNome());
                     editTextEmail.setText(participante.getEmail());
-                    editTextCPF.setText(participante.getCpf());
+                    editTextCPF.setText(CPFUtils.formatCPF(participante.getCpf())); // Exibe o CPF formatado
                     editTextTelefone.setText(participante.getTelefone());
                     // Ajustar o spinner para a modalidade certa
                     int spinnerPosition = 0; // Posição padrão
@@ -101,21 +100,31 @@ public class AddEditParticipanteActivity extends AppCompatActivity {
         String cpf = editTextCPF.getText().toString().trim();
         String telefone = editTextTelefone.getText().toString().trim();
         Modalidade modalidadeSelecionada = (Modalidade) spinnerModalidade.getSelectedItem();
-        int idMod = modalidadeSelecionada != null ? modalidadeSelecionada.getId() : -1; // Pega o ID da modalidade
+        int idMod = modalidadeSelecionada != null ? modalidadeSelecionada.getId() : -1;
 
+        // Verifica se todos os campos foram preenchidos
         if (nome.isEmpty() || email.isEmpty() || cpf.isEmpty() || telefone.isEmpty()) {
             Toast.makeText(this, "Por favor, preencha todos os campos", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        // Verifica se estamos editando ou adicionando
+        // Validação do CPF
+        if (!CPFUtils.isValidCPF(cpf)) {
+            Toast.makeText(this, "CPF inválido", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        cpf = CPFUtils.formatCPF(cpf); // Formata o CPF
+
+        // Continuar com a inserção ou edição
+        String finalCpf = cpf;
         executorService.execute(() -> {
             if (participante == null) {
                 // Adicionando novo participante
                 participante = new Participante();
                 participante.setNome(nome);
                 participante.setEmail(email);
-                participante.setCpf(cpf);
+                participante.setCpf(finalCpf);
                 participante.setTelefone(telefone);
                 participante.setIdMod(idMod);
                 participanteDao.insertPart(participante);
@@ -127,7 +136,7 @@ public class AddEditParticipanteActivity extends AppCompatActivity {
                 // Editando participante existente
                 participante.setNome(nome);
                 participante.setEmail(email);
-                participante.setCpf(cpf);
+                participante.setCpf(finalCpf);
                 participante.setTelefone(telefone);
                 participante.setIdMod(idMod);
                 participanteDao.updatePart(participante);

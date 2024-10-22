@@ -7,6 +7,17 @@
     android:layout_height="match_parent"
     tools:context=".activities.ParticipantesActivity">
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btnVoltar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start|top"
+        android:src="@drawable/icon_arrow_back"
+        app:backgroundTint="@color/backgroundBotao"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@color/iconAdd" />
+
     <TextView
         android:id="@+id/txtParticipantes"
         android:layout_width="match_parent"
