@@ -4,22 +4,34 @@ import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import java.io.Serializable;
+
 @Entity
-public class Modalidade {
+public class Modalidade implements Serializable {
+
     @PrimaryKey(autoGenerate = true)
-    private int idMod;
+    private int id;
     private String descricao;
 
-    public Modalidade(int idMod, String descricao) {
-        this.idMod = idMod;
+    public Modalidade(String descricao) {
+        this.descricao = descricao;
+    }
+
+    public Modalidade() {
+    }
+
+    public Modalidade(int id, String descricao) {
+        this.id = id;
         this.descricao = descricao;
     }
 
     // Getters e Setters
-    public Modalidade(){}
+    public int getId() {
+        return id;
+    }
 
-    public int getIdMod() {
-        return idMod;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getDescricao() {
@@ -30,12 +42,9 @@ public class Modalidade {
         this.descricao = descricao;
     }
 
-    public void setIdMod(int idMod) {
-        this.idMod = idMod;
-    }
-
     @NonNull
     @Override
-    public String toString() {return this.getIdMod() + " " + this.getDescricao();}
+    public String toString() {
+        return this.getDescricao();
+    }
 }
-

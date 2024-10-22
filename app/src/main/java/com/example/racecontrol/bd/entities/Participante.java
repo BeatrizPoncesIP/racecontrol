@@ -6,6 +6,7 @@ import androidx.room.ForeignKey;
 
 @Entity(foreignKeys = @ForeignKey(entity = Modalidade.class, parentColumns = "id", childColumns = "idMod"))
 public class Participante {
+
     @PrimaryKey(autoGenerate = true)
     private int id;
     private String nome;
@@ -14,8 +15,7 @@ public class Participante {
     private String telefone;
     private int idMod;  // Chave estrangeira que faz referência a Modalidade
 
-    public Participante(int id, String nome, String email, String cpf, String telefone, int idMod) {
-        this.id = id;
+    public Participante(String nome, String email, String cpf, String telefone, int idMod) {
         this.nome = nome;
         this.email = email;
         this.cpf = cpf;
@@ -25,6 +25,7 @@ public class Participante {
 
     // Getters e Setters
     public Participante(){}
+
     public int getId() {return id;}
     public String getNome() {return nome;}
     public String getEmail() {return email;}
@@ -35,16 +36,14 @@ public class Participante {
     public void setEmail(String email) {this.email = email;}
     public void setCpf(String cpf) {this.cpf = cpf;}
     public void setTelefone(String telefone) {this.telefone = telefone;}
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public int getIdMod() {
         return idMod;
     }
-
     public void setIdMod(int idMod) {
         this.idMod = idMod;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 }

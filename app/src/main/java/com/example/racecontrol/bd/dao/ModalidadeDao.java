@@ -12,20 +12,17 @@ import java.util.List;
 public interface ModalidadeDao {
 
     @Query("SELECT * FROM Modalidade")
-    List<Modalidade> getAllMod();
+    public List<Modalidade> getAllMod();
 
-    @Query("SELECT * FROM Modalidade WHERE idMod = :idMod")
-    Modalidade getModById(int idMod);
+    @Query("SELECT * FROM Modalidade WHERE id = :idMod") // Retorna a modalidade a partir do Id.
+    public Modalidade getModById(int idMod);
 
     @Insert
-    void insertMod(Modalidade modalidade);
+    public void insertMod(Modalidade modalidade);
 
     @Update
-    void updateMod(Modalidade modalidade);
+    public void updateMod(Modalidade modalidade);
 
     @Delete
-    void deleteMod(Modalidade modalidade);
-
-    @Query("SELECT * FROM Modalidade WHERE idMod = :idMod") // Retorna a modalidade a partir do Id.
-    Modalidade getModalidadeById(int idMod);
+    public void deleteMod(Modalidade modalidade);
 }

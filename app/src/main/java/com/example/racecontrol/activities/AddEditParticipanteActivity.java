@@ -1,4 +1,4 @@
-package com.example.racecontrol;
+package com.example.racecontrol.activities;
 
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
@@ -7,6 +7,8 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.racecontrol.R;
 import com.example.racecontrol.bd.dao.ParticipanteDao;
 import com.example.racecontrol.bd.dao.ModalidadeDao;
 import com.example.racecontrol.bd.database.AppDatabase;
@@ -38,8 +40,8 @@ public class AddEditParticipanteActivity extends AppCompatActivity {
         editTextCPF = findViewById(R.id.editCPF);
         editTextTelefone = findViewById(R.id.editTelefone);
         spinnerModalidade = findViewById(R.id.spinnerModalidade);
-        buttonSalvar = findViewById(R.id.btnSalvar);
-        buttonCancelar = findViewById(R.id.btnCancelar);
+        buttonSalvar = findViewById(R.id.btnSalvarParticipante);
+        buttonCancelar = findViewById(R.id.btnCancelarParticipante);
 
         // Inicializando o DAO e o executor
         participanteDao = AppDatabase.getDatabase(this).participanteDao();
@@ -82,7 +84,7 @@ public class AddEditParticipanteActivity extends AppCompatActivity {
                     // Ajustar o spinner para a modalidade certa
                     int spinnerPosition = 0; // Posição padrão
                     for (int i = 0; i < modalidades.size(); i++) {
-                        if (modalidades.get(i).getIdMod() == participante.getId()) {
+                        if (modalidades.get(i).getId() == participante.getId()) {
                             spinnerPosition = i;
                             break;
                         }
@@ -99,7 +101,7 @@ public class AddEditParticipanteActivity extends AppCompatActivity {
         String cpf = editTextCPF.getText().toString().trim();
         String telefone = editTextTelefone.getText().toString().trim();
         Modalidade modalidadeSelecionada = (Modalidade) spinnerModalidade.getSelectedItem();
-        int idMod = modalidadeSelecionada != null ? modalidadeSelecionada.getIdMod() : -1; // Pega o ID da modalidade
+        int idMod = modalidadeSelecionada != null ? modalidadeSelecionada.getId() : -1; // Pega o ID da modalidade
 
         if (nome.isEmpty() || email.isEmpty() || cpf.isEmpty() || telefone.isEmpty()) {
             Toast.makeText(this, "Por favor, preencha todos os campos", Toast.LENGTH_SHORT).show();

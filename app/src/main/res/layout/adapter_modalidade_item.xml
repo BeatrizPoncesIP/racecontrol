@@ -1,11 +1,11 @@
 <LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:gravity="center_vertical"
-    android:padding="10dp">
+xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:orientation="horizontal"
+android:gravity="center_vertical"
+android:padding="10dp">
 
     <LinearLayout
         android:layout_width="0dp"
@@ -15,30 +15,22 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/participante_nome"
+            android:id="@+id/modalidade_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingBottom="10dp"
-            android:text="Nome"
+            android:text="Id"
             android:textColor="@color/txtLista"
             android:textStyle="bold"
             android:textSize="18sp"/>
 
         <TextView
-            android:id="@+id/participante_telefone"
+            android:id="@+id/modalidade_descricao"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Telefone"
+            android:text="Descrição"
             android:textColor="@color/txtLista"
-            android:textSize="16sp"/>
-
-        <TextView
-            android:id="@+id/participante_modalidade"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Modalidade"
-            android:textColor="@color/txtLista"
-            android:textSize="16sp"/>
+            android:textSize="18sp"/>
     </LinearLayout>
 
     <LinearLayout
@@ -48,7 +40,7 @@
         android:orientation="horizontal">
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/btnEditar"
+            android:id="@+id/btnEditarModalidade"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:clickable="true"
@@ -58,7 +50,7 @@
             app:srcCompat="@drawable/icon_editar" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/btnExcluir"
+            android:id="@+id/btnExcluirModalidade"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:backgroundTint="@android:color/transparent"

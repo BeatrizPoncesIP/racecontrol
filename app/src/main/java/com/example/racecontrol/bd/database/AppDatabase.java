@@ -12,6 +12,7 @@ import com.example.racecontrol.bd.entities.Modalidade;
 @Database(entities = {Participante.class, Modalidade.class}, version = 1)
 public abstract class AppDatabase extends RoomDatabase {
 
+
     private static AppDatabase INSTANCE;
 
     // Método para obter a instância do banco de dados
